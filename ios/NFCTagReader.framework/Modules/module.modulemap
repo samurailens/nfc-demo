@@ -1,0 +1,6 @@
+framework module NFCTagReader {
+  umbrella header "NFCTagReader.h"
+
+  export *
+  module * { export * }
+}
