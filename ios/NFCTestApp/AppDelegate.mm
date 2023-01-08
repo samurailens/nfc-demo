@@ -16,6 +16,9 @@
 
 #import <react/config/ReactNativeConfig.h>
 
+//#import "NFC/NFCTagReader/NFCTagReader.h"
+//#import "NFCTagReader.h"
+
 static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
 @interface AppDelegate () <RCTCxxBridgeDelegate, RCTTurboModuleManagerDelegate> {
@@ -129,5 +132,16 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 }
 
 #endif
+
+#pragma mark - nfc发送
+- (void)sendImage:(UIImage *)image
+{
+  // NFCTagReader shared = nil;  // Strong typing
+  // [[NFCTagReader shared] getUID];
+//    // 判断版本
+//    // if ([_versionStr isEqual:EINK_154_V1]) {
+//        [[NFCTagReader shared] sendImage:image password:nil einkSizeType:EInkSizeType154];
+//    // }
+}
 
 @end

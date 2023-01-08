@@ -11,9 +11,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		185F18387BB27458E69A5AEA /* libPods-NFCTestApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE23182B1457CEA541F3377 /* libPods-NFCTestApp.a */; };
-		7D7623562953127B00B2CA99 /* NFCTagReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7623542953121700B2CA99 /* NFCTagReader.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		7D7623572953127B00B2CA99 /* NFCTagReader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7623542953121700B2CA99 /* NFCTagReader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7D762359295312D400B2CA99 /* NFCTagReader.framework in Resources */ = {isa = PBXBuildFile; fileRef = 7D7623542953121700B2CA99 /* NFCTagReader.framework */; };
+		7DD37CBC2969F6B2004AB65D /* NFCTagReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD37CBB2969F6B2004AB65D /* NFCTagReader.framework */; };
+		7DD37CBF296ACC30004AB65D /* RCTWaveShareNFCModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD37CBE296ACC30004AB65D /* RCTWaveShareNFCModule.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +23,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7D7623572953127B00B2CA99 /* NFCTagReader.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 1;
@@ -41,7 +39,10 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NFCTestApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = NFCTestApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NFCTestApp/main.m; sourceTree = "<group>"; };
-		7D7623542953121700B2CA99 /* NFCTagReader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NFCTagReader.framework; sourceTree = "<group>"; };
+		7DD37CBB2969F6B2004AB65D /* NFCTagReader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NFCTagReader.framework; path = NFCTestApp/NFC/NFCTagReader.framework; sourceTree = "<group>"; };
+		7DD37CBD296ACBB1004AB65D /* RCTWaveShareNFCModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTWaveShareNFCModule.h; sourceTree = "<group>"; };
+		7DD37CBE296ACC30004AB65D /* RCTWaveShareNFCModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTWaveShareNFCModule.m; sourceTree = "<group>"; };
+		7DD37CC0296AE606004AB65D /* NFCTestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NFCTestApp.entitlements; path = NFCTestApp/NFCTestApp.entitlements; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NFCTestApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A942AD3208D28E834CA2601 /* Pods-NFCTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFCTestApp.debug.xcconfig"; path = "Target Support Files/Pods-NFCTestApp/Pods-NFCTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		ADE23182B1457CEA541F3377 /* libPods-NFCTestApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NFCTestApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D7623562953127B00B2CA99 /* NFCTagReader.framework in Frameworks */,
+				7DD37CBC2969F6B2004AB65D /* NFCTagReader.framework in Frameworks */,
 				185F18387BB27458E69A5AEA /* libPods-NFCTestApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +82,8 @@
 		13B07FAE1A68108700A75B9A /* NFCTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				7DD37CC0296AE606004AB65D /* NFCTestApp.entitlements */,
+				7DD37CBB2969F6B2004AB65D /* NFCTagReader.framework */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -94,7 +97,6 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7D7623542953121700B2CA99 /* NFCTagReader.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ADE23182B1457CEA541F3377 /* libPods-NFCTestApp.a */,
 			);
@@ -111,6 +113,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				7DD37CBE296ACC30004AB65D /* RCTWaveShareNFCModule.m */,
+				7DD37CBD296ACBB1004AB65D /* RCTWaveShareNFCModule.h */,
 				13B07FAE1A68108700A75B9A /* NFCTestApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* NFCTestAppTests */,
@@ -202,7 +206,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D762359295312D400B2CA99 /* NFCTagReader.framework in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -311,6 +314,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				7DD37CBF296ACC30004AB65D /* RCTWaveShareNFCModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,13 +327,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = NFCTestApp/NFCTestApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = NFCTagReader.framework;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Q8KJT39JP4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/NFCTestApp/NFC",
 				);
 				INFOPLIST_FILE = NFCTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -343,7 +351,9 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.NFCTestAppCapabilityUpdated;
 				PRODUCT_NAME = NFCTestApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -356,12 +366,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = NFCTestApp/NFCTestApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = NFCTagReader.framework;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Q8KJT39JP4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/NFCTestApp/NFC",
 				);
 				INFOPLIST_FILE = NFCTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -375,7 +389,9 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.NFCTestAppCapabilityUpdated;
 				PRODUCT_NAME = NFCTestApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -433,6 +449,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(inherited)\"",
+					"\"$(PROJECT_DIR)/NFC\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -455,6 +475,7 @@
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SEPARATE_SYMBOL_EDIT = NO;
+				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/NFCTestApp/NFC\"/**";
 			};
 			name = Debug;
 		};
@@ -501,6 +522,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(inherited)\"",
+					"\"$(PROJECT_DIR)/NFC\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -521,6 +546,7 @@
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SEPARATE_SYMBOL_EDIT = NO;
+				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/NFCTestApp/NFC\"/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
