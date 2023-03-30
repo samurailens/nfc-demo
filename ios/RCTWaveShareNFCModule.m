@@ -22,7 +22,7 @@ RCT_EXPORT_MODULE(RCTWaveShareNFCModule);
 RCT_EXPORT_METHOD(sendImageEvent:(NSString *)imageUrl location:(NSString *)location)
 {
   RCTLogInfo(@"Pretending to create an event %@ at %@", imageUrl, location);
-  [[NFCTagReader shared] getUID];
+  // [[NFCTagReader shared] getUID];
   
   // we got image URL from JS into -> imageUrl
   NSURL  *url = [NSURL URLWithString:imageUrl];
@@ -39,6 +39,8 @@ RCT_EXPORT_METHOD(sendImageEvent:(NSString *)imageUrl location:(NSString *)locat
     
     // UIImage *image = [[UIImage alloc] init];
     UIImage *imageFromFile = [UIImage imageWithContentsOfFile:filePath];
+    
+//    [[NFCTagReader shared] getUID];
 //    [[NFCTagReader shared] sendImage:imageFromFile password:nil einkSizeType:EInkSizeType154];
     
     
@@ -46,9 +48,11 @@ RCT_EXPORT_METHOD(sendImageEvent:(NSString *)imageUrl location:(NSString *)locat
     NSURL *url = [NSURL URLWithString:imageUrl];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *imageFromURL = [UIImage imageWithData:data];
-    [[NFCTagReader shared] sendImage:imageFromURL password:nil einkSizeType:EInkSizeType420];
     
-    
+    NSLog(@"%@", imageFromURL);
+//    [[NFCTagReader shared] sendImage:imageFromURL password:nil einkSizeType:EInkSizeType420];
+//
+    [self fetchImageFromServer];
 
     NSLog(@"Downloading completed... %f", imageFromURL.size.width);
   }
@@ -61,15 +65,63 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getName)
 {
   return [[UIDevice currentDevice] name];
 }
+//
+//#pragma mark - nfc发送
+//- (void)sendImage:(UIImage *)image
+//{
+//  // NFCTagReader shared = nil;  // Strong typing
+//  [[NFCTagReader shared] getUID];
+////    // 判断版本
+////    // if ([_versionStr isEqual:EINK_154_V1]) {
+////        [[NFCTagReader shared] sendImage:image password:nil einkSizeType:EInkSizeType154];
+////    // }
+//}
 
-#pragma mark - nfc发送
-- (void)sendImage:(UIImage *)image
-{
-  // NFCTagReader shared = nil;  // Strong typing
-  [[NFCTagReader shared] getUID];
-//    // 判断版本
-//    // if ([_versionStr isEqual:EINK_154_V1]) {
-//        [[NFCTagReader shared] sendImage:image password:nil einkSizeType:EInkSizeType154];
-//    // }
+- (void)fetchImageFromServer {
+  
+  // [[NFCTagReader shared] getUID];
+  dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.staging2.rucmonkey.co.nz/ruc/v3/myruc/vehicle/ruclicense/31412/label/bitmap"]
+    cachePolicy:NSURLRequestUseProtocolCachePolicy
+    timeoutInterval:10.0];
+  NSDictionary *headers = @{
+    @"Authorization": @"Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxODYiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJteXJ1Y2RldkBwaWNvYnl0ZS5jby5ueiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IjIiLCJuYmYiOjE2ODAyMDA2NjksImV4cCI6MTY4MDIxNTA2OSwiaXNzIjoiaHR0cHM6Ly93d3cucnVjbW9ua2V5LmNvLm56In0.qosm32GUyaJzOyjJyV1MGG2irp1T1Ixxlikv1p3t1VR7cSneb1UUk8nFZpWPduPUmwpID7Sbs9BPRno56VXWEA"
+  };
+
+  [request setAllHTTPHeaderFields:headers];
+
+  [request setHTTPMethod:@"GET"];
+
+  NSURLSession *session = [NSURLSession sharedSession];
+  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    if (error) {
+      NSLog(@"%@", error);
+      NSLog(@"Error ");
+      dispatch_semaphore_signal(sema);
+    } else {
+      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+      NSError *parseError = nil;
+      
+      UIImage* downloadimage = [UIImage imageWithData:data];
+      UIImage* image = [[UIImage alloc] initWithData:data];
+      
+//      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+//      NSLog(@"got response %@",responseDictionary);
+      
+      NSLog(@"got response data %@",image);
+    
+      [[NFCTagReader shared] sendImage:image password:NULL einkSizeType:EInkSizeType420];
+      
+      
+      dispatch_semaphore_signal(sema);
+      NSLog(@"got response data 3");
+    }
+  }];
+  [dataTask resume];
+  dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+  NSLog(@"got response data 2");
+
 }
 @end
